@@ -86,16 +86,29 @@ function onTouchEnd(e) {
 }
 
 //初始化函数
-function initScene(fontSize, name, width1, height1, content, width2, height2) {
+function initScene(name, content) {
     ww = canvas.width = window.innerWidth;
     wh = canvas.height = window.innerHeight;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);   //清空 Canvas
     // sans-serif
-    ctx.font = "bold " + fontSize + "px sans-serif";
+    ctx.save();
+    console.log(ww, wh);
     ctx.textAlign = "center";
-    ctx.fillText(name, width1, height1);               //将 Input 中输入的值，打印在 Canvas 上
-    ctx.fillText(content, width2, height2);               //将 Input 中输入的值，打印在 Canvas 上
+    if (ww < 500) {
+        ctx.translate(ww/2,wh/2);
+        ctx.rotate(90*Math.PI/180);
+        ctx.font = "bold " + ww/4 + "px sans-serif";
+        ctx.fillText(name, -ww/2.6, -wh/15);               //将 Input 中输入的值，打印在 Canvas 上
+        ctx.fillText(content, ww/7, wh/6);
+    } else {
+        ctx.font = "bold " + ww/6 + "px sans-serif";
+        ctx.fillText(name, ww/3.7, wh/2.8);               //将 Input 中输入的值，打印在 Canvas 上
+        ctx.fillText(content, ww/1.8, wh/1.3);
+    }
+
+
+    ctx.restore();
 
     var data = ctx.getImageData(0, 0, ww, wh).data;    //获取图像数据
     ctx.clearRect(0, 0, canvas.width, canvas.height);   //清空 Canvas

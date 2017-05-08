@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <style>
         body {
             margin: 0;
-            overflow: hidden;
+            /*overflow: hidden;*/
             font-size: 0;
         }
 
@@ -38,8 +38,8 @@
 <canvas id="scene"></canvas>
 <script src="js/Qin.js"></script>
 <script>
-    //字体大小， 内容1， 内容2 ww为屏幕宽度 wh为屏幕高度
-    initScene(ww / 6, '芹宝♥', ww / 3.5, wh / 2.8, '生日快乐～', ww / 1.8, wh / 1.2);                                            //初始化
+    //字体大小， 内容1， 内容2 ww为屏幕宽度
+    initScene('芹宝♥', '生日快乐～');                                            //初始化
     requestAnimationFrame(render);
 </script>
 
