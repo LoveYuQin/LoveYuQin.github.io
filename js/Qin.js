@@ -10,7 +10,7 @@ var canvas = document.querySelector("#scene"),
     radius = 1;
 
 //颜色变量数组
-var colors = ["#468966", "#FFF0A5", "#FFB03B", "#B64926", "#8E2800"];
+var colors = ["#073059", "#2866AB", "#5FBDC5", "#A5F2E7", "#C2FAF1", "#F6F6F6"];
 
 // var copy = document.querySelector("#copy");
 
@@ -25,7 +25,12 @@ function Particle(x, y) {
         x: x,
         y: y
     };
-    this.r = Math.random() * 5 + 2;  //2~7                    //随机半径（颗粒大小）
+    if (ww > 500) {
+        this.r = Math.random() * 10 + 2;  // 随机半径（颗粒大小）
+    } else{
+        this.r = Math.random() * 2 + 1;  // 随机半径（颗粒大小）
+    }
+
     this.vx = (Math.random() - 0.5) * 20; //-10~10
     this.vy = (Math.random() - 0.5) * 20; //-10~10
     this.accX = 0;
@@ -93,18 +98,21 @@ function initScene(name, content) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);   //清空 Canvas
     // sans-serif
     ctx.save();
-    console.log(ww, wh);
     ctx.textAlign = "center";
-    if (ww < 500) {
+    if (ww < 500) { //手机移动端
         ctx.translate(ww/2,wh/2);
         ctx.rotate(90*Math.PI/180);
         ctx.font = "bold " + ww/4 + "px sans-serif";
         ctx.fillText(name, -ww/2.6, -wh/15);               //将 Input 中输入的值，打印在 Canvas 上
         ctx.fillText(content, ww/7, wh/6);
-    } else {
+    }
+
+    else {
         ctx.font = "bold " + ww/6 + "px sans-serif";
-        ctx.fillText(name, ww/3.7, wh/2.8);               //将 Input 中输入的值，打印在 Canvas 上
-        ctx.fillText(content, ww/1.8, wh/1.3);
+
+        ctx.fillText(name, ww/3.6, wh/2.8);               //将 Input 中输入的值，打印在 Canvas 上
+        ctx.fillText(content, ww/1.8, wh/1.2);
+        ctx.fill();
     }
 
 
